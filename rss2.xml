@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Guojiahe 的博客</title>
+    <link>https://imguojiahe.github.io/</link>
+    
+    <atom:link href="https://imguojiahe.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>给时光以生命, 给岁月以文明。</description>
+    <pubDate>Thu, 05 May 2022 10:24:37 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://imguojiahe.github.io/2022/05/05/hello-world/</link>
+      <guid>https://imguojiahe.github.io/2022/05/05/hello-world/</guid>
+      <pubDate>Thu, 05 May 2022 06:58:38 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;这是本蒟蒻辛辛苦苦建出来的博客，希望在上面发一些关于编程和计算机的东西。&lt;/p&gt;
+&lt;p&gt;这里写上我搭建这个博客按照的&lt;a href=&quot;https://zhuanlan.zhihu.com/p/102592286&quot;&gt;教程&lt;/a&gt;如果有需要的话大家可以看看~&lt;/p&gt;
+</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>这是本蒟蒻辛辛苦苦建出来的博客，希望在上面发一些关于编程和计算机的东西。</p><p>这里写上我搭建这个博客按照的<a href="https://zhuanlan.zhihu.com/p/102592286">教程</a>如果有需要的话大家可以看看~</p>]]></content:encoded>
+      
+      
+      
+      
+      <comments>https://imguojiahe.github.io/2022/05/05/hello-world/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>
