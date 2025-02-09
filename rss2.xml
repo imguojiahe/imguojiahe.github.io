@@ -8,15 +8,15 @@
     
     <atom:link href="https://imguojiahe.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
-    <description>给时光以生命, 给岁月以文明。</description>
+    <description>人啊，认识你自己</description>
     <pubDate>Fri, 06 May 2022 08:43:10 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title>最长公共串题解</title>
-      <link>https://imguojiahe.github.io/2022/05/06/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E4%B8%B2%E9%A2%98%E8%A7%A3/</link>
-      <guid>https://imguojiahe.github.io/2022/05/06/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E4%B8%B2%E9%A2%98%E8%A7%A3/</guid>
-      <pubDate>Fri, 06 May 2022 08:31:54 GMT</pubDate>
+      <link>https://imguojiahe.github.io/2023/02/18/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E4%B8%B2%E9%A2%98%E8%A7%A3/</link>
+      <guid>https://imguojiahe.github.io/2023/02/18/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E4%B8%B2%E9%A2%98%E8%A7%A3/</guid>
+      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
       
         
         
@@ -37,15 +37,122 @@
       <category domain="https://imguojiahe.github.io/tags/%E9%A2%98%E8%A7%A3/">题解</category>
       
       
-      <comments>https://imguojiahe.github.io/2022/05/06/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E4%B8%B2%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
+      <comments>https://imguojiahe.github.io/2023/02/18/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E4%B8%B2%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>USACO23JAN Following Directions S 题解</title>
+      <link>https://imguojiahe.github.io/2023/02/18/USACO23JAN_Following_Directions_S_%E9%A2%98%E8%A7%A3/</link>
+      <guid>https://imguojiahe.github.io/2023/02/18/USACO23JAN_Following_Directions_S_%E9%A2%98%E8%A7%A3/</guid>
+      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;题目分析&quot;&gt;&lt;a href=&quot;#题目分析&quot; class=&quot;headerlink&quot; title=&quot;题目分析&quot;&gt;&lt;/a&gt;题目分析&lt;/h2&gt;&lt;p&gt;预处理每个点经过的牛数 $cnt_{i, j}$，每次更改一个点的指向时，计算更改前的终点坐标 &lt;code&gt;Old&lt;/cod</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>预处理每个点经过的牛数 $cnt_{i, j}$，每次更改一个点的指向时，计算更改前的终点坐标 <code>Old</code> 和更改后的终点坐标 <code>New</code>（不要忘了修改是一直保留的，在计算终点的过程中要顺便更改途经点的牛数和出发点的路牌方向 <del>，某蒟蒻在这个问题上调了 10min</del>）。</p><p>新答案是旧答案 $ans$ 减去出发点牛数 $cnt_{x, y}$ 与 旧终点花费 <code>a[oldx][oldy].x</code> 的积， 加上出发点牛数 $cnt_{x, y}$ 与 新终点花费 <code>a[newx][newy].x</code> 的积。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">long</span> <span class="type">long</span> NR = <span class="number">15</span> * <span class="number">1e2</span> + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">    <span class="built_in">Node</span>()&#123;</span><br><span class="line">        c = <span class="string">&#x27;@&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> x;</span><br><span class="line">&#125;a[NR + <span class="number">10</span>][NR + <span class="number">10</span>];   <span class="comment">//结构体存储输入</span></span><br><span class="line"><span class="type">char</span> s[NR + <span class="number">10</span>];</span><br><span class="line"><span class="type">long</span> <span class="type">long</span> cnt[NR + <span class="number">10</span>][NR + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;n);</span><br><span class="line">    <span class="comment">//读入</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">long</span> <span class="type">long</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">long</span> <span class="type">long</span> j = <span class="number">1</span>;j &lt;= n;j++)&#123;</span><br><span class="line">            a[i][j].c = s[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;a[i][n + <span class="number">1</span>].x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">long</span> <span class="type">long</span> j = <span class="number">1</span>;j &lt;= n;j++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;a[n + <span class="number">1</span>][j].x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//预处理每个点经过的牛数</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">long</span> <span class="type">long</span> i = <span class="number">1</span>;i &lt;= n + <span class="number">1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">long</span> <span class="type">long</span> j = <span class="number">1</span>;j &lt;= n + <span class="number">1</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == n + <span class="number">1</span> &amp;&amp; j == n + <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(i &lt;= n &amp;&amp; j &lt;= n)&#123;   <span class="comment">//住所</span></span><br><span class="line">                <span class="keyword">if</span>(a[i - <span class="number">1</span>][j].c == <span class="string">&#x27;D&#x27;</span>)&#123;</span><br><span class="line">                    cnt[i][j] += cnt[i - <span class="number">1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(a[i][j - <span class="number">1</span>].c == <span class="string">&#x27;R&#x27;</span>)&#123;</span><br><span class="line">                    cnt[i][j] += cnt[i][j - <span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                cnt[i][j]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;   <span class="comment">//饲料桶</span></span><br><span class="line">                <span class="keyword">if</span>(i == n + <span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(a[i - <span class="number">1</span>][j].c == <span class="string">&#x27;D&#x27;</span>)&#123;</span><br><span class="line">                        cnt[i][j] += cnt[i - <span class="number">1</span>][j];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(j == n + <span class="number">1</span>)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(a[i][j - <span class="number">1</span>].c == <span class="string">&#x27;R&#x27;</span>)&#123;</span><br><span class="line">                        cnt[i][j] += cnt[i][j - <span class="number">1</span>];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//计算最初花费</span></span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">long</span> <span class="type">long</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">        sum += <span class="number">1ll</span> * cnt[n + <span class="number">1</span>][i] * a[n + <span class="number">1</span>][i].x;</span><br><span class="line">        sum += <span class="number">1ll</span> * cnt[i][n + <span class="number">1</span>] * a[i][n + <span class="number">1</span>].x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, sum);   <span class="comment">//输出</span></span><br><span class="line">    <span class="comment">//处理更改</span></span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> T;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> x, y;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld&quot;</span>, &amp;x, &amp;y);   <span class="comment">//读入</span></span><br><span class="line">        <span class="comment">//计算旧路径</span></span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> posx = x, posy = y;</span><br><span class="line">        <span class="keyword">while</span>(posx != n + <span class="number">1</span> &amp;&amp; posy != n + <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[posx][posy].c == <span class="string">&#x27;D&#x27;</span>)&#123;</span><br><span class="line">                posx++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(a[posx][posy].c == <span class="string">&#x27;R&#x27;</span>)&#123;</span><br><span class="line">                posy++;</span><br><span class="line">            &#125;</span><br><span class="line">            cnt[posx][posy] -= cnt[x][y];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> tmpx = posx, tmpy = posy;</span><br><span class="line">        posx = x, posy = y;</span><br><span class="line">        <span class="comment">//更改方向</span></span><br><span class="line">        <span class="keyword">if</span>(a[posx][posy].c == <span class="string">&#x27;D&#x27;</span>)&#123;</span><br><span class="line">            a[posx][posy].c = <span class="string">&#x27;R&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[posx][posy].c == <span class="string">&#x27;R&#x27;</span>)&#123;</span><br><span class="line">            a[posx][posy].c = <span class="string">&#x27;D&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//计算新路径</span></span><br><span class="line">        <span class="keyword">while</span>(posx != n + <span class="number">1</span> &amp;&amp; posy != n + <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[posx][posy].c == <span class="string">&#x27;D&#x27;</span>)&#123;</span><br><span class="line">                posx++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(a[posx][posy].c == <span class="string">&#x27;R&#x27;</span>)&#123;</span><br><span class="line">                posy++;</span><br><span class="line">            &#125;</span><br><span class="line">            cnt[posx][posy] += cnt[x][y];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//计算并输出</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, sum - cnt[x][y] * a[tmpx][tmpy].x</span><br><span class="line">                             + cnt[x][y] * a[posx][posy].x);</span><br><span class="line">        sum -= cnt[x][y] * a[tmpx][tmpy].x;</span><br><span class="line">        sum += cnt[x][y] * a[posx][posy].x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3/">编程题解</category>
+      
+      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3/%E6%B4%9B%E8%B0%B7%E9%A2%98%E7%9B%AE/">洛谷题目</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E9%A2%98%E8%A7%A3/">题解</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2023/02/18/USACO23JAN_Following_Directions_S_%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>USACO2023Jan银组题解</title>
+      <link>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E9%A2%98%E8%A7%A3/</link>
+      <guid>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E9%A2%98%E8%A7%A3/</guid>
+      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;Find-and-Replace&quot;&gt;&lt;a href=&quot;#Find-and-Replace&quot; class=&quot;headerlink&quot; title=&quot;Find and Replace&quot;&gt;&lt;/a&gt;Find and Replace&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;目前还不正确</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="Find-and-Replace"><a href="#Find-and-Replace" class="headerlink" title="Find and Replace"></a>Find and Replace</h1><p><strong>目前还不正确的思路</strong></p><p>想象为图，每个字母向ta要转换为的那个字母连接一条单向边，接着遍历每个字母，处理一下情况：</p><ol><li>字母 c 同时要变成字母 c1 和字母 c2，若发生这种情况，输出 $-1$，处理下一个数据。</li><li>字母 c1 指向字母 c2 且字母 c2 <strong>也</strong>指向字母 c1,若发生这种情况，按键总数加 $3$。</li><li>字母 c1 指向字母 c2 且字母 c2 <strong>不</strong>指向字母 c1,若发生这种情况，按键总数加 $1$。</li></ol><h1 id="Following-Directions"><a href="#Following-Directions" class="headerlink" title="Following Directions"></a>Following Directions</h1><p><a href="https://s1.ax1x.com/2023/01/31/pS0hLkT.jpg">正确的</a>思路</p><p>预处理每个点经过的牛数 $cnt_{i, j}$，每次更改一个点的指向时，计算更改前的终点坐标 <code>Old</code> 和更改后的终点坐标 <code>New</code> （不要忘了修改是一直保留的，在计算终点的过程中要顺便更改途经点的牛数和出发点的路牌方向 <del>，某蒟蒻在这个问题上调了10min</del>）。</p><p>新答案是旧答案 $ans$ 减去出发点牛数 $cnt_{x, y}$ 与 旧终点花费 $a[oldx][oldy].x$ 的积， 加上出发点牛数 $cnt_{x, y}$ 与 新终点花费 $a[newx][newy].x$ 的积。</p><h1 id="Moo-Route"><a href="#Moo-Route" class="headerlink" title="Moo Route"></a>Moo Route</h1><p><a href="https://s1.ax1x.com/2023/01/31/pS04tjs.jpg">正确的</a>思路</p><p>构造题，一开始必定会向右走，所以第一步先输出’R’，再从 $1$ 开始模拟。每次比较当前和当前左面一个的大小，当前大就向右走并减少一次穿过当前点的次数；当前小就向左走并减少一次穿过左边点的次数</p>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%EF%BC%8CUSACO%E9%A2%98%E7%9B%AE/">编程题解，USACO题目</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E9%A2%98%E8%A7%A3/">题解</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>USACO2023Jan银组翻译</title>
+      <link>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E7%BF%BB%E8%AF%91/</link>
+      <guid>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E7%BF%BB%E8%AF%91/</guid>
+      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;Find-and-Replace&quot;&gt;&lt;a href=&quot;#Find-and-Replace&quot; class=&quot;headerlink&quot; title=&quot;Find and Replace&quot;&gt;&lt;/a&gt;Find and Replace&lt;/h1&gt;&lt;h2 id=&quot;题目描述：&quot;&gt;&lt;a</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="Find-and-Replace"><a href="#Find-and-Replace" class="headerlink" title="Find and Replace"></a>Find and Replace</h1><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>Bessie正在使用最新、最NB的文本编辑软件miV!！从一个仅由大写和小写英文字母组成的输入字符串开始，希望将其转化为某个输出字符串。只需一个按键，miV就能让她替换所有出现的一个英文字母 $c_1$ 为 $c_2$ 。例如，给定字符串 $aAbBa$，如果Bessie选择 $c_1$ 为 ‘a’ 且 $c_2$ 为 ‘B’，则所给的字符串转化为 $BAbBBBAbBB$</p><p>贝西是一头忙碌的奶牛，所以对于 $T(1 \leqslant t \leqslant 10) $ 组数据中的每一个， 输出将她的输入字符串转化为她所期望的输出字符串所需的最少按键数。</p><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>第一行为一个正整数 $T$，表示独立测试案例的数量。</p><p>之后的 $T$ 对每对包含一个长度相同的原始和期望字符串。所有字符都是大写或小写的英文字母。所有字符串的长度之和不超过 $10^5$。</p><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>对于每个测试案例，输出将输入字符串变为输出字符串所需的最小敲击键数，或$-1$如果不可能这样做。</p><h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><h3 id="输入-1"><a href="#输入-1" class="headerlink" title="输入"></a>输入</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">abc</span><br><span class="line">abc</span><br><span class="line">BBC</span><br><span class="line">ABC</span><br><span class="line">abc</span><br><span class="line">bbc</span><br><span class="line">ABCD</span><br><span class="line">BACD</span><br></pre></td></tr></table></figure><h3 id="输出-1"><a href="#输出-1" class="headerlink" title="输出"></a>输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">-1</span><br><span class="line">1</span><br><span class="line">3</span><br></pre></td></tr></table></figure><h2 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h2><p>第一个输入字符串与它的输出字符串相同，所以不需要击键。</p><p>第二个输入字符串不能被改变成其输出字符串，因为Bessie不能改变一个 ‘B’ 变为 ‘A’ 而保存另一个字符为 ‘B’。</p><p>第三个输入字符串可以通过改变 ‘a’ 为 ‘b’ 变为输出字符串。</p><p>最后一个输入字符串可以像这样改成它的输出字符串：$ABCD→EBCD→EACD→BACD$</p><h1 id="Following-Directions"><a href="#Following-Directions" class="headerlink" title="Following Directions"></a>Following Directions</h1><h2 id="题目描述：-1"><a href="#题目描述：-1" class="headerlink" title="题目描述："></a>题目描述：</h2><p><strong>注意：这个问题的时间限制是8秒，是默认值的四倍</strong>。</p><p>农民约翰有一块 $(n + 1) \times (n + 1) (1 \leqslant n \leqslant 10)$ 正方形的大田，被分割成一个个的小块。</p><p>方格 $(i, j)$ 表示上数第 $i$ 行左数第 $j$ 列的方格。对于每个方格 &#x3D;&#x3D;$(i, j) (1 \leqslant i, j \leqslant n)$&#x3D;&#x3D;，其中都有一头牛，而每一个这样的方格也包含一个指向右边或向下的路标。对于每个方格 &#x3D;&#x3D;$(i, j) (i &#x3D; n + 1 或j &#x3D; n + 1)$&#x3D;&#x3D; （$(n + 1, n + 1)$ 除外）有一大桶的奶牛饲料。每个大桶里都有不同价格的奶牛饲料。位于 $(i, j)$ 的价格为 $c_{i, j}$。</p><p>每天晚餐时间，农夫约翰敲响晚餐的钟声，每头牛一直沿着路标的方向走，直到到达一个大桶，然后从这个大桶中获得食物。然后，奶牛们都回到它们原来的位置，准备第二天的工作。</p><p>为了维持预算，农夫约翰想知道每天喂养所有奶牛的总成本。然而，在每天的晚餐前，一些在方格 $i, j$ 里的奶牛翻转其指针的方向（从右到下或反之），在接下来的日子里，路标也会保持在这个方向，除非后来被翻转回来。</p><p>给出每天被翻转的路标的坐标，输出每天的成本(总共有 $Q (1 \leqslant Q \leqslant 1500)$)</p><h2 id="输入-2"><a href="#输入-2" class="headerlink" title="输入"></a>输入</h2><p>第一行为一个正整数 $N$。</p><p>之后的 $N + 1$ 行表示整个牧场的路标以及价格(R, D分别代表指向右方或下方的路标)。</p><p>下一行为一个正整数 $Q$。</p><p>之后的 $Q$ 行每行包括两个正整数 $(i, j)$，这是其标志物在相应日期被翻转的单元的坐标。</p><h2 id="输出-2"><a href="#输出-2" class="headerlink" title="输出"></a>输出</h2><p>共 $Q + 1$ 行：总成本的原始值，然后是每次翻转后的总成本值。</p><h2 id="样例-1"><a href="#样例-1" class="headerlink" title="样例"></a>样例</h2><h3 id="输入-3"><a href="#输入-3" class="headerlink" title="输入"></a>输入</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">RR 1</span><br><span class="line">DD 10</span><br><span class="line">100 500</span><br><span class="line">4</span><br><span class="line">1 1</span><br><span class="line">1 1</span><br><span class="line">1 1</span><br><span class="line">2 1</span><br></pre></td></tr></table></figure><h3 id="输出-3"><a href="#输出-3" class="headerlink" title="输出"></a>输出</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">602</span><br><span class="line">701</span><br><span class="line">602</span><br><span class="line">701</span><br><span class="line">1501</span><br></pre></td></tr></table></figure><h1 id="Moo-Route"><a href="#Moo-Route" class="headerlink" title="Moo Route"></a>Moo Route</h1><h2 id="题目描述：-2"><a href="#题目描述：-2" class="headerlink" title="题目描述："></a>题目描述：</h2><p>农民Nhoj把Bessie丢在了荒郊野外！在时刻$t &#x3D; 0$ 时，Bessie一条无限的数轴上位于 $x &#x3D; 0$。她每秒疯狂地通过向左或向右移动 $1$ 个单位来寻找一个出口。然而，实际上并没有出口，而且在 $T$ 秒后，Bessie又回到了 $x &#x3D; 0$.</p><p>农民Nhoj试图追踪Bessie，但只知道Bessie穿过 $x &#x3D; 0.5, 1.5, 2.5, 3.5, …, (N - 1).5$的次数，由一个数组 $A()$ 给出。Bessie不可能到达 $x &gt; n$ 或 $x &lt; 0$的点。</p><p>特别是，Bessie的路线可以用一个字符串串 $T&#x3D;∑^{N−1}_{i&#x3D;0}Ai$ 为 ‘L’ 或 ‘R’ ，是Bessie第 $i$ 秒的运动方向。方向改变的数量被定义为出现在 “LR” 的数量加上 “RL” 的数量。</p><p>请帮助农夫Nhoj找到贝西可能走的与A一致的路线，并尽量减少方向变化的次数。保证至少有一条有效路线。</p><h2 id="输入-4"><a href="#输入-4" class="headerlink" title="输入"></a>输入</h2><p>第一行一个正整数 $n$</p><p>第二行 $n$ 个整数，代表 $A_0, A_1, …A{n - 1}$</p><h2 id="输出-4"><a href="#输出-4" class="headerlink" title="输出"></a>输出</h2><p>一个字符串串 $T&#x3D;∑^{N−1}_{i&#x3D;0}Ai$ 为 ‘L’ 或 ‘R’ ，代表 Bessie 在第 $i$ 秒的行进方向。如果有多条路线，输出转向次数最小的任意一条。</p>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E7%BF%BB%E8%AF%91%EF%BC%8CUSACO%E9%A2%98%E7%9B%AE/">编程题目翻译，USACO题目</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E7%BF%BB%E8%AF%91/">翻译</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E7%BF%BB%E8%AF%91/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>USACO2023Jan银组总结</title>
+      <link>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E6%80%BB%E7%BB%93/</link>
+      <guid>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E6%80%BB%E7%BB%93/</guid>
+      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;上来第一眼习惯性的找中文翻译，然后&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://imgse.com/i/pS0hee0&quot;&gt;&lt;img src=&quot;https://s1.ax1x.com/2023/01/31/pS0hee0.jpg&quot; alt=&quot;pS0hee0.jpg&quot;&gt;&lt;/</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>上来第一眼习惯性的找中文翻译，然后</p><p><a href="https://imgse.com/i/pS0hee0"><img src="https://s1.ax1x.com/2023/01/31/pS0hee0.jpg" alt="pS0hee0.jpg"></a></p><p><strong>大哥！！！你中文翻译呢！！！</strong></p><p>在之后就开始了漫长的翻译的过程（自翻+机翻）<br>在漫长的40多分钟之后，一篇<del>毫无意义且浪费时间的</del>翻译就写完了。<br><a href="https://www.luogu.com.cn/blog/gjhdbk/usaco2023jan-yin-zu-fan-yi">翻译链接</a></p><p>现在看来如果在多几十分钟编程可能能AK？（并不确定）</p><p>每道题都看完之后，发现B好像有一点点<a href="https://www.luogu.com.cn/blog/gjhdbk/usaco2023jan-yin-zu-ti-xie">思路</a>，就先把 B 题切了。过程中忘记了  <em>翻转之后路标也会保持在这个方向，除非后来被翻转回来</em>  这一点调了10分钟。</p><p>然后是 C 题，在纸上划拉了几下之后盲猜了一种用 S 形的路来覆盖的方法，居然就给 AC 了！（纯侥幸）但每次都会莫名其妙的迷之输出一个多余的字符（最后我用存到字符串里后删掉最后一个多余的字符再输出）。</p><p>AC这两题之后就只剩下不到 $20min$ 的时间了，勉勉强强想出 A 题思路写完调完之后发现比赛就这么结束了(＃￣～￣＃)，也没交上去，现在还不知道对错。</p><p>所以说，如果少花几十分钟在翻译上的话可能能AK。</p>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E5%8F%82%E8%B5%9B%E6%80%BB%E7%BB%93%EF%BC%8CUSACO%E9%A2%98%E7%9B%AE/">参赛总结，USACO题目</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E5%8F%82%E8%B5%9B%E6%80%BB%E7%BB%93/">参赛总结</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E6%80%BB%E7%BB%93/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title></title>
-      <link>https://imguojiahe.github.io/2022/05/06/text/</link>
-      <guid>https://imguojiahe.github.io/2022/05/06/text/</guid>
-      <pubDate>Fri, 06 May 2022 06:19:12 GMT</pubDate>
+      <link>https://imguojiahe.github.io/2023/02/18/test/</link>
+      <guid>https://imguojiahe.github.io/2023/02/18/test/</guid>
+      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
       
         
         
@@ -59,15 +166,98 @@
       
       
       
-      <comments>https://imguojiahe.github.io/2022/05/06/text/#disqus_thread</comments>
+      <comments>https://imguojiahe.github.io/2023/02/18/test/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>P8550 冬之花 题解</title>
+      <link>https://imguojiahe.github.io/2023/02/18/P8550_%E5%86%AC%E4%B9%8B%E8%8A%B1_%E9%A2%98%E8%A7%A3/</link>
+      <guid>https://imguojiahe.github.io/2023/02/18/P8550_%E5%86%AC%E4%B9%8B%E8%8A%B1_%E9%A2%98%E8%A7%A3/</guid>
+      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;对一个数 $x$，进行 $10^{100}$ 次操作，每次操作为：把这个数加上 $a_i(1 \le i \le n)$ 。</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>对一个数 $x$，进行 $10^{100}$ 次操作，每次操作为：把这个数加上 $a_i(1 \le i \le n)$ 。</p><p>问能不能在这 $10^{100}$ 中，不出现为 $0$ 的数？</p><h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>如果 $x$ 为正数，有两种情况满足题目条件：</p><ol><li>$a$ 数组中有正数（一直累加这一个数，$x$ 逐渐变大，不可能变成0）；</li><li>$a$ 数组中有负数且 $n$ 不能被 $\left| a_i \right|$ 整除（会变成负数但不会出现 $0$ ）。</li></ol><p>同样，如果 $x$ 为负数，也有两种情况满足题目条件：</p><ol><li>$a$ 数组中有负数；（一直累加这一个数，$x$ 逐渐变小，不可能变成0）；</li><li>$a$ 数组中有正数数且 $\left| n \right|$ 不能被 $a_i$ 整除（会变成正数但不会出现 $0$ ）。</li></ol><p>所以，我们可以遍历题目给出的每一个数，判断它是否满足条件，只要有一个数满足上面的条件，答案便为可行，若没有一个数满足，则答案为不可行。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> NR = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[NR + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;                              <span class="comment">//多组数据</span></span><br><span class="line">        <span class="type">int</span> n, x;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;x);                  <span class="comment">//读入</span></span><br><span class="line">        <span class="type">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">            <span class="keyword">if</span>(a[i] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(x &gt; <span class="number">0</span>)&#123;                  <span class="comment">//正数中的1.</span></span><br><span class="line">                    flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(<span class="built_in">abs</span>(x) % a[i]) flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;                        <span class="comment">//负数中的2.</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(a[i] &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(x &lt; <span class="number">0</span>)&#123;                  <span class="comment">//负数中的1.</span></span><br><span class="line">                    flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(x % <span class="built_in">abs</span>(a[i])) flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;                        <span class="comment">//正数中的2.</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(flag ? <span class="string">&quot;Yes\n&quot;</span> : <span class="string">&quot;No\n&quot;</span>);          <span class="comment">//输出</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%EF%BC%8C%E6%B4%9B%E8%B0%B7%E9%A2%98%E7%9B%AE/">编程题解，洛谷题目</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E9%A2%98%E8%A7%A3/">题解</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2023/02/18/P8550_%E5%86%AC%E4%B9%8B%E8%8A%B1_%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>P8537 花如幻想一般 题解</title>
+      <link>https://imguojiahe.github.io/2023/02/18/P8537_%E8%8A%B1%E5%A6%82%E5%B9%BB%E6%83%B3%E4%B8%80%E8%88%AC_%E9%A2%98%E8%A7%A3/</link>
+      <guid>https://imguojiahe.github.io/2023/02/18/P8537_%E8%8A%B1%E5%A6%82%E5%B9%BB%E6%83%B3%E4%B8%80%E8%88%AC_%E9%A2%98%E8%A7%A3/</guid>
+      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;有一个长度为 $n$ 的序列 $a$。可以进行两种操作：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将整个序列翻转；&lt;/li&gt;
+&lt;li&gt;将序</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有一个长度为 $n$ 的序列 $a$。可以进行两种操作：</p><ol><li>将整个序列翻转；</li><li>将序列中的某个数加上某个整数。</li></ol><p>问：至少要用多少次操作可以将序列 $a$ 转化为序列 $b$。</p><h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>只要稍微思考一下，就可以得到一个结论：假设反转的次数为 $x$ </p><p>则 $0 \leq x \leq 1$ 所以，我们可以分别枚举两种情况，</p><p>第一种为不翻转，第二种为翻转。</p><p>然后分别得出两种序列后，遍历得出不翻转和翻转之后的数组与 $b$ 相对应的数不相同的数的个数后，取最小值就是答案。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> NR = <span class="number">5</span> * <span class="number">1e5</span>;</span><br><span class="line"><span class="type">int</span> a[NR + <span class="number">10</span>], b[NR + <span class="number">10</span>], c[NR + <span class="number">10</span>];</span><br><span class="line"><span class="comment">//  没有翻转   目标      翻转</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);<span class="comment">//输入</span></span><br><span class="line">        c[n - i + <span class="number">1</span>] = a[i];<span class="comment">//翻转</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;b[i]);<span class="comment">//输入</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> cnt1 = <span class="number">0</span>, cnt2 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;<span class="comment">//计算</span></span><br><span class="line">        cnt1 += a[i] != b[i];</span><br><span class="line">        cnt2 += c[i] != b[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="built_in">min</span>(cnt1, cnt2));<span class="comment">//输出</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%EF%BC%8C%E6%B4%9B%E8%B0%B7%E9%A2%98%E7%9B%AE/">编程题解，洛谷题目</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E9%A2%98%E8%A7%A3/">题解</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2023/02/18/P8537_%E8%8A%B1%E5%A6%82%E5%B9%BB%E6%83%B3%E4%B8%80%E8%88%AC_%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>P1156 垃圾陷阱 题解</title>
+      <link>https://imguojiahe.github.io/2023/02/18/P1156_%E5%9E%83%E5%9C%BE%E9%99%B7%E9%98%B1_%E9%A2%98%E8%A7%A3/</link>
+      <guid>https://imguojiahe.github.io/2023/02/18/P1156_%E5%9E%83%E5%9C%BE%E9%99%B7%E9%98%B1_%E9%A2%98%E8%A7%A3/</guid>
+      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;题意简述&quot;&gt;&lt;a href=&quot;#题意简述&quot; class=&quot;headerlink&quot; title=&quot;题意简述&quot;&gt;&lt;/a&gt;题意简述&lt;/h2&gt;&lt;p&gt;在一个深度为 $D$ 的坑内，有很多垃圾，一只牛在其中。每个垃圾可以用来吃和堆放（堆放垃圾&lt;strong&gt;不用花费&lt;/str</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h2><p>在一个深度为 $D$ 的坑内，有很多垃圾，一只牛在其中。每个垃圾可以用来吃和堆放（堆放垃圾<strong>不用花费</strong>时间）。 </p><p>已知每个垃圾进入坑内的时间 $t$ 、高度 $h$ 和能量值 $f$ ，如果当前有 $x$ 的能量值，就能继续存活 $x$ 小时。</p><p>问这只牛能否从坑里出来，如果能，输出能出来的最早时间，否则输出最长存活时间</p><h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>第一眼看到题目想到了贪心，仔细阅读后发现和01背包更像一些，这里我用的是01背包的一个变形。</p><h2 id="思路部分"><a href="#思路部分" class="headerlink" title="思路部分"></a>思路部分</h2><p>我使用 $dp_j$ 表示高度为 $j$ 时的最大能量。题目中假设卡门当前体内有足够持续 $10$ 小时的能量，说以数组的初值就是 <code>dp[0] = 10</code> ， 题目中垃圾的顺序可能不按照到达时间来排列，所以读入完之后要按到达时间先后顺序。</p><p>然后就是01背包的变形，按顺序遍历每个垃圾，枚举所有的可能高度，分别把数组中这个垃圾用来吃和用来垫脚的状态分别更新，如果当前高度再垫上这个垃圾就可以出去的话就输出当前的时间。但这一切的前提条件是卡门没有饿死，所以还要判断卡门没有饿死才能执行。</p><p>如果循环结束卡门还没有出去，就说明他出不去，那维持生命的最长时间就是把垃圾全吃了的维持时间。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> NR = <span class="number">1e2</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MR = <span class="number">1e2</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span>&#123; <span class="comment">//垃圾</span></span><br><span class="line"><span class="type">int</span> t, f, h;</span><br><span class="line">&#125;a[NR + <span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> dp[MR + <span class="number">10</span>]; <span class="comment">//dp[j]表示高度为 j 时的最大能量</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(Node x, Node y)</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> x.t &lt; y.t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="comment">//读入</span></span><br><span class="line"><span class="type">int</span> d, n;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;d, &amp;n);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;a[i].t, &amp;a[i].f, &amp;a[i].h);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n, cmp); <span class="comment">//按照时间先后排序</span></span><br><span class="line"><span class="built_in">memset</span>(dp, ~<span class="number">0x3f3f3f3f</span>, <span class="built_in">sizeof</span>(dp)); <span class="comment">//初始化</span></span><br><span class="line">dp[<span class="number">0</span>] = <span class="number">10</span>; <span class="comment">//初值</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123; <span class="comment">//背包</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j = d;j &gt;= <span class="number">0</span>;j--)&#123;</span><br><span class="line"><span class="keyword">if</span>(dp[j] &gt;= a[i].t)&#123; <span class="comment">//还没饿死</span></span><br><span class="line"><span class="keyword">if</span>(j + a[i].h &gt;= d)&#123; <span class="comment">//出去了</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, a[i].t);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">dp[j + a[i].h] = <span class="built_in">max</span>(dp[j + a[i].h], dp[j]); <span class="comment">//这个垃圾用来垫脚了</span></span><br><span class="line">dp[j] += a[i].f; <span class="comment">//吃垃圾</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, dp[<span class="number">0</span>]); <span class="comment">//出不去, 全吃了</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3/">编程题解</category>
+      
+      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3/%E6%B4%9B%E8%B0%B7%E9%A2%98%E7%9B%AE/">洛谷题目</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E9%A2%98%E8%A7%A3/">题解</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2023/02/18/P1156_%E5%9E%83%E5%9C%BE%E9%99%B7%E9%98%B1_%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Hello World</title>
-      <link>https://imguojiahe.github.io/2022/05/05/hello-world/</link>
-      <guid>https://imguojiahe.github.io/2022/05/05/hello-world/</guid>
-      <pubDate>Thu, 05 May 2022 06:58:38 GMT</pubDate>
+      <link>https://imguojiahe.github.io/2023/02/18/hello-world/</link>
+      <guid>https://imguojiahe.github.io/2023/02/18/hello-world/</guid>
+      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
       
         
         
@@ -83,7 +273,7 @@
       
       
       
-      <comments>https://imguojiahe.github.io/2022/05/05/hello-world/#disqus_thread</comments>
+      <comments>https://imguojiahe.github.io/2023/02/18/hello-world/#disqus_thread</comments>
       
     </item>
     
