@@ -4,6 +4,156 @@
   
     
     <entry>
+      <title>20231229题解</title>
+      <link href="/2025/02/09/20231229%E9%A2%98%E8%A7%A3/"/>
+      <url>/2025/02/09/20231229%E9%A2%98%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"># 2023/12/29 元旦欢乐赛（伪）题解</span><br><span class="line"></span><br><span class="line">T1-seq</span><br><span class="line">核心算法：DP</span><br><span class="line"></span><br><span class="line">按照正整数从小到大的顺序去替换每一个序列元素。每次处理完的一定是两个序列前缀</span><br><span class="line">设f[i][j]表示考虑A的前i个元素、B的前j个元素，最后使用的正整数的最小值</span><br><span class="line">两种转移：</span><br><span class="line">a. 从f[i-1][j]过来，要替换A[i]，计算出A[i]应该用什么正整数替换</span><br><span class="line">b. 从f[i][j-1]过来，要替换B[j]，计算出B[j]应该用什么正整数替换</span><br><span class="line">f[i][j]取两种方案的最小值</span><br><span class="line"></span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">T2 - triangle</span><br><span class="line">核心算法：前缀和</span><br><span class="line"></span><br><span class="line">考虑直线是垂直于x轴的情况，另一种情况同理</span><br><span class="line">假设直线为x=x&#x27;（某条竖线）</span><br><span class="line">三角形被一分为二，当且仅当三角形最靠左的顶点在竖线左边（顶点坐标中最小的x&lt;x&#x27;），最靠右的顶点在竖线右边（顶点坐标中最大的x&gt;x&#x27;）</span><br><span class="line">所以对于每一条竖线，前缀和预处理出有多少个三角形最左的顶点在它及左边（记为s1[x]）、三角形最右的顶点在它及左边（记为s2[x]）</span><br><span class="line">那么对于x=x&#x27;，答案为s1[x&#x27;-1] - x2[x&#x27;]</span><br><span class="line"></span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">T3 - matrix</span><br><span class="line">核心算法：单调栈</span><br><span class="line"></span><br><span class="line">考虑恰好以某个位置为右下角有多少个合法的子矩阵</span><br><span class="line"> *   ***</span><br><span class="line">** *****</span><br><span class="line">********</span><br><span class="line">********</span><br><span class="line">********</span><br><span class="line">对于上图右下角的考虑，等同于下图</span><br><span class="line">     ***</span><br><span class="line">   *****</span><br><span class="line">********</span><br><span class="line">********</span><br><span class="line">********</span><br><span class="line">从左往右先是高度3的区域（宽3），再是高度4的区域（宽2），最后是高度5个区域（宽3）</span><br><span class="line">因此，上图右下角所对应的矩阵数是 3*3 + 4*2 + 5*3</span><br><span class="line">我们先计算出以每个位置为下端的向上拥有相同元素的长条高度</span><br><span class="line">对于每一行，单调栈维护出一系列高度递增的元素相同的矩形区域即可求解</span><br><span class="line"></span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">T4 - calc</span><br><span class="line">核心算法：数学、高精度</span><br><span class="line"></span><br><span class="line">通过裂项、通分等，对式子进行化简，然后高精度</span><br><span class="line">对于最后既约分数的计算，要注意到，公因子的范围不会超过N+M-1，所以，除法我们只需要高精度除以单精度</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">T5 - graph</span><br><span class="line">核心算法：最小生成树</span><br><span class="line"></span><br><span class="line">最终只能是势能高的连向势能低的</span><br><span class="line">对于第一问的求解，只需要做个dfs/bfs遍历</span><br><span class="line">在第一问的基础上计算第二问，我们只考虑对答案有意义的有向边</span><br><span class="line">将这些边按终点势能从大到小（排序的第一关键字），按边权从小到大排序（排序的第二关键字）</span><br><span class="line">然后做Kruskal（只是边的排序方式不一样，剩下算法操作不变）</span><br><span class="line"></span><br><span class="line">当然，本题也可以用Prim求解，方法自行考虑</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 洛谷剪贴板搬运 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 剪贴板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>20230210学校比赛</title>
+      <link href="/2025/02/09/20230210%E5%AD%A6%E6%A0%A1%E6%AF%94%E8%B5%9B/"/>
+      <url>/2025/02/09/20230210%E5%AD%A6%E6%A0%A1%E6%AF%94%E8%B5%9B/</url>
+      
+        <content type="html"><![CDATA[<p>T1:</p><p>枚举区间用插入排序的方法维护区间内最大的100个数，和用链表维护区间外的最大值</p><p>枚举交换的次数，把区间内最小的数和区间外头最大的数交换。</p><p>T2:</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 洛谷剪贴板搬运 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 剪贴板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>快读快写</title>
+      <link href="/2025/02/09/%E5%BF%AB%E8%AF%BB%E5%BF%AB%E5%86%99/"/>
+      <url>/2025/02/09/%E5%BF%AB%E8%AF%BB%E5%BF%AB%E5%86%99/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">T a = (T)<span class="number">0</span>, b = (T)<span class="number">1</span>;</span><br><span class="line"><span class="type">char</span> ch = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line"><span class="keyword">while</span>(ch != <span class="string">&#x27;-&#x27;</span> &amp;&amp; (ch &lt; <span class="string">&#x27;0&#x27;</span> || ch &gt; <span class="string">&#x27;9&#x27;</span>))&#123;</span><br><span class="line">ch = <span class="built_in">getchar</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(ch == <span class="string">&#x27;-&#x27;</span>)&#123;</span><br><span class="line">b = <span class="number">-1</span>;</span><br><span class="line">ch = <span class="built_in">getchar</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(ch &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span>)&#123;</span><br><span class="line">a = ((T)a &lt;&lt; <span class="number">3</span>) + ((T)a &lt;&lt; <span class="number">1</span>) + (ch ^ <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">ch = <span class="built_in">getchar</span>();</span><br><span class="line">&#125;</span><br><span class="line">x = a * b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x, <span class="type">char</span> c = <span class="string">&#x27;\0&#x27;</span>)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span>(x &lt; (T)<span class="number">0</span>)&#123;</span><br><span class="line"><span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">x = -x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(x &gt; (T)<span class="number">9</span>)&#123;</span><br><span class="line"><span class="built_in">write</span>(x / (T)<span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">putchar</span>(x % (T)<span class="number">10</span> + <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(c != <span class="string">&#x27;\0&#x27;</span>)&#123;</span><br><span class="line"><span class="built_in">putchar</span>(c);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> string <span class="title">strread</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">char</span> ch = <span class="built_in">getchar</span>();</span><br><span class="line">    string ret = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">while</span>(!(ch &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;z&#x27;</span> || ch &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span> || ch &gt;= <span class="string">&#x27;A&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;Z&#x27;</span>))&#123;</span><br><span class="line">        ch = <span class="built_in">getchar</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(ch &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;z&#x27;</span> || ch &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span> || ch &gt;= <span class="string">&#x27;A&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;Z&#x27;</span>)&#123;</span><br><span class="line">        ret += ch;</span><br><span class="line">        ch = <span class="built_in">getchar</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 洛谷剪贴板搬运 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 剪贴板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>算法板子</title>
+      <link href="/2025/02/09/%E7%AE%97%E6%B3%95%E6%9D%BF%E5%AD%90/"/>
+      <url>/2025/02/09/%E7%AE%97%E6%B3%95%E6%9D%BF%E5%AD%90/</url>
+      
+        <content type="html"><![CDATA[<h1 id="算法板子"><a href="#算法板子" class="headerlink" title="算法板子"></a>算法板子</h1><ol><li><a href="https://www.luogu.com.cn/paste/dea5cl7s">快读快写: 用字符读入方法读入数字</a></li><li><a href="https://www.luogu.com.cn/paste/ggnghzi7">Kruskal算法框架</a></li><li><a href="https://www.luogu.com.cn/paste/dvzoo2co">LCA: 利用倍增法向上爬树寻找相同点</a></li><li><a href="https://www.luogu.com.cn/paste/pfu7qqm1">ST表: 分成有2^n长度组成的小部分，再用类似dp的方法推出其他小部分的最大最小值</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/bmo0jmb6.png">树上差分: 利用差分思想加减点权</a><br><img src="https://cdn.luogu.com.cn/upload/image_hosting/bmo0jmb6.png"></li><li><a href="https://www.luogu.com.cn/paste/6mzkielp">Floyd</a></li><li><a href="https://www.luogu.com.cn/paste/uz83o6u6">Dijkstra</a></li><li><a href="https://www.luogu.com.cn/paste/prgil5e8">线段树</a></li><li><a href="https://www.luogu.com.cn/paste/cnxlsb67">树状数组</a></li><li><a href="https://www.luogu.com.cn/paste/li1jzx1x">KMP &amp; KMP 字符串查找</a></li><li><a href="https://www.luogu.com.cn/paste/l5w5sdtr">拓展KMP</a></li><li><a href="https://www.luogu.com.cn/paste/qzahqnrq">manacher</a></li><li><a href="https://www.luogu.com.cn/paste/e7g2cjz3">树链剖分（树剖）</a></li><li><a href="https://www.luogu.com.cn/paste/z1ptxyu3">后缀数组（SA）: 利用倍增的思想求解字符串所有后缀按字典序排序后的顺序</a></li><li><a href="https://www.luogu.com.cn/paste/eqz4wvhc">AC 自动机: 将 KMP 的思想运用到 字典树 上，以在单个文本串中匹配多个模板串</a></li><li><a href="https://www.luogu.com.cn/paste/lors79an">压位高精度</a></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 洛谷剪贴板搬运 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 剪贴板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>强力杀极域电子教室</title>
+      <link href="/2025/02/09/%E5%BC%BA%E5%8A%9B%E6%9D%80%E6%9E%81%E5%9F%9F%E7%94%B5%E5%AD%90%E6%95%99%E5%AE%A4/"/>
+      <url>/2025/02/09/%E5%BC%BA%E5%8A%9B%E6%9D%80%E6%9E%81%E5%9F%9F%E7%94%B5%E5%AD%90%E6%95%99%E5%AE%A4/</url>
+      
+        <content type="html"><![CDATA[<p><code>taskkill /f /im StudentMain.exe</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 洛谷剪贴板搬运 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 剪贴板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>备忘录</title>
+      <link href="/2025/02/09/%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+      <url>/2025/02/09/%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="备忘录"><a href="#备忘录" class="headerlink" title="备忘录"></a>备忘录</h1><p>ex. <a href="http://yuantiji.ac/zh/">原题机</a></p><p>ex. <a href="https://www.luogu.com.cn/paste/g1g5aa6o">强力杀极域电子教室</a></p><p>ex. <a href="https://www.luogu.com.cn/paste/8ygmwoy2">算法板子</a></p><p>ex. <a href="https://www.luogu.com.cn/paste/dea5cl7s">快读快写</a></p><p>ex. <a href="http://yuantiji.ac/zh/">原题查找站</a></p><p>ex. <a href="https://www.luogu.com.cn/paste/d0ar2y9p">原题查找1</a></p><ol><li><a href="https://www.luogu.com.cn/paste/lwcq1td6">2023&#x2F;2&#x2F;10学校比赛</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/vvrgfpwh.png">P7883框架</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/ai1od25q.png">T225800框架</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/yf4vbvx2.png">P5094框架</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/u9l64rnb.png">春测题解</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/w9ealk20.png">2023&#x2F;3&#x2F;22单调队列参考</a></li><li><a href="https://csacademy.com/app/graph_editor/">生成图</a></li><li><a href="https://www.sharelikes.com.cn/">P社游戏资源</a></li><li><a href="https://game.chronodivide.com/">红警2网页版</a></li><li><a href="https://www.luogu.com.cn/paste/rv1fype4">2023&#x2F;12&#x2F;29题解</a></li></ol><p>ex. <a href="https://www.luogu.com.cn/paste/i0rd6wcb">工具箱</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 洛谷剪贴板搬运 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 剪贴板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>最长公共串题解</title>
       <link href="/2023/02/18/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E4%B8%B2%E9%A2%98%E8%A7%A3/"/>
       <url>/2023/02/18/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E4%B8%B2%E9%A2%98%E8%A7%A3/</url>

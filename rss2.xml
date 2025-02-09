@@ -9,8 +9,171 @@
     <atom:link href="https://imguojiahe.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>人啊，认识你自己</description>
-    <pubDate>Fri, 06 May 2022 08:43:10 GMT</pubDate>
+    <pubDate>Sun, 09 Feb 2025 14:39:42 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>20231229题解</title>
+      <link>https://imguojiahe.github.io/2025/02/09/20231229%E9%A2%98%E8%A7%A3/</link>
+      <guid>https://imguojiahe.github.io/2025/02/09/20231229%E9%A2%98%E8%A7%A3/</guid>
+      <pubDate>Sun, 09 Feb 2025 14:39:10 GMT</pubDate>
+      
+        
+        
+      <description>&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span c</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"># 2023/12/29 元旦欢乐赛（伪）题解</span><br><span class="line"></span><br><span class="line">T1-seq</span><br><span class="line">核心算法：DP</span><br><span class="line"></span><br><span class="line">按照正整数从小到大的顺序去替换每一个序列元素。每次处理完的一定是两个序列前缀</span><br><span class="line">设f[i][j]表示考虑A的前i个元素、B的前j个元素，最后使用的正整数的最小值</span><br><span class="line">两种转移：</span><br><span class="line">a. 从f[i-1][j]过来，要替换A[i]，计算出A[i]应该用什么正整数替换</span><br><span class="line">b. 从f[i][j-1]过来，要替换B[j]，计算出B[j]应该用什么正整数替换</span><br><span class="line">f[i][j]取两种方案的最小值</span><br><span class="line"></span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">T2 - triangle</span><br><span class="line">核心算法：前缀和</span><br><span class="line"></span><br><span class="line">考虑直线是垂直于x轴的情况，另一种情况同理</span><br><span class="line">假设直线为x=x&#x27;（某条竖线）</span><br><span class="line">三角形被一分为二，当且仅当三角形最靠左的顶点在竖线左边（顶点坐标中最小的x&lt;x&#x27;），最靠右的顶点在竖线右边（顶点坐标中最大的x&gt;x&#x27;）</span><br><span class="line">所以对于每一条竖线，前缀和预处理出有多少个三角形最左的顶点在它及左边（记为s1[x]）、三角形最右的顶点在它及左边（记为s2[x]）</span><br><span class="line">那么对于x=x&#x27;，答案为s1[x&#x27;-1] - x2[x&#x27;]</span><br><span class="line"></span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">T3 - matrix</span><br><span class="line">核心算法：单调栈</span><br><span class="line"></span><br><span class="line">考虑恰好以某个位置为右下角有多少个合法的子矩阵</span><br><span class="line"> *   ***</span><br><span class="line">** *****</span><br><span class="line">********</span><br><span class="line">********</span><br><span class="line">********</span><br><span class="line">对于上图右下角的考虑，等同于下图</span><br><span class="line">     ***</span><br><span class="line">   *****</span><br><span class="line">********</span><br><span class="line">********</span><br><span class="line">********</span><br><span class="line">从左往右先是高度3的区域（宽3），再是高度4的区域（宽2），最后是高度5个区域（宽3）</span><br><span class="line">因此，上图右下角所对应的矩阵数是 3*3 + 4*2 + 5*3</span><br><span class="line">我们先计算出以每个位置为下端的向上拥有相同元素的长条高度</span><br><span class="line">对于每一行，单调栈维护出一系列高度递增的元素相同的矩形区域即可求解</span><br><span class="line"></span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">T4 - calc</span><br><span class="line">核心算法：数学、高精度</span><br><span class="line"></span><br><span class="line">通过裂项、通分等，对式子进行化简，然后高精度</span><br><span class="line">对于最后既约分数的计算，要注意到，公因子的范围不会超过N+M-1，所以，除法我们只需要高精度除以单精度</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">T5 - graph</span><br><span class="line">核心算法：最小生成树</span><br><span class="line"></span><br><span class="line">最终只能是势能高的连向势能低的</span><br><span class="line">对于第一问的求解，只需要做个dfs/bfs遍历</span><br><span class="line">在第一问的基础上计算第二问，我们只考虑对答案有意义的有向边</span><br><span class="line">将这些边按终点势能从大到小（排序的第一关键字），按边权从小到大排序（排序的第二关键字）</span><br><span class="line">然后做Kruskal（只是边的排序方式不一样，剩下算法操作不变）</span><br><span class="line"></span><br><span class="line">当然，本题也可以用Prim求解，方法自行考虑</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E6%B4%9B%E8%B0%B7%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%90%AC%E8%BF%90/">洛谷剪贴板搬运</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E5%89%AA%E8%B4%B4%E6%9D%BF/">剪贴板</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2025/02/09/20231229%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>20230210学校比赛</title>
+      <link>https://imguojiahe.github.io/2025/02/09/20230210%E5%AD%A6%E6%A0%A1%E6%AF%94%E8%B5%9B/</link>
+      <guid>https://imguojiahe.github.io/2025/02/09/20230210%E5%AD%A6%E6%A0%A1%E6%AF%94%E8%B5%9B/</guid>
+      <pubDate>Sun, 09 Feb 2025 14:37:36 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;T1:&lt;/p&gt;
+&lt;p&gt;枚举区间用插入排序的方法维护区间内最大的100个数，和用链表维护区间外的最大值&lt;/p&gt;
+&lt;p&gt;枚举交换的次数，把区间内最小的数和区间外头最大的数交换。&lt;/p&gt;
+&lt;p&gt;T2:&lt;/p&gt;
+</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>T1:</p><p>枚举区间用插入排序的方法维护区间内最大的100个数，和用链表维护区间外的最大值</p><p>枚举交换的次数，把区间内最小的数和区间外头最大的数交换。</p><p>T2:</p>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E6%B4%9B%E8%B0%B7%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%90%AC%E8%BF%90/">洛谷剪贴板搬运</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E5%89%AA%E8%B4%B4%E6%9D%BF/">剪贴板</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2025/02/09/20230210%E5%AD%A6%E6%A0%A1%E6%AF%94%E8%B5%9B/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>快读快写</title>
+      <link>https://imguojiahe.github.io/2025/02/09/%E5%BF%AB%E8%AF%BB%E5%BF%AB%E5%86%99/</link>
+      <guid>https://imguojiahe.github.io/2025/02/09/%E5%BF%AB%E8%AF%BB%E5%BF%AB%E5%86%99/</guid>
+      <pubDate>Sun, 09 Feb 2025 14:36:15 GMT</pubDate>
+      
+        
+        
+      <description>&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">T a = (T)<span class="number">0</span>, b = (T)<span class="number">1</span>;</span><br><span class="line"><span class="type">char</span> ch = <span class="string">&#x27; &#x27;</span>;</span><br><span class="line"><span class="keyword">while</span>(ch != <span class="string">&#x27;-&#x27;</span> &amp;&amp; (ch &lt; <span class="string">&#x27;0&#x27;</span> || ch &gt; <span class="string">&#x27;9&#x27;</span>))&#123;</span><br><span class="line">ch = <span class="built_in">getchar</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(ch == <span class="string">&#x27;-&#x27;</span>)&#123;</span><br><span class="line">b = <span class="number">-1</span>;</span><br><span class="line">ch = <span class="built_in">getchar</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(ch &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span>)&#123;</span><br><span class="line">a = ((T)a &lt;&lt; <span class="number">3</span>) + ((T)a &lt;&lt; <span class="number">1</span>) + (ch ^ <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">ch = <span class="built_in">getchar</span>();</span><br><span class="line">&#125;</span><br><span class="line">x = a * b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x, <span class="type">char</span> c = <span class="string">&#x27;\0&#x27;</span>)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span>(x &lt; (T)<span class="number">0</span>)&#123;</span><br><span class="line"><span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">x = -x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(x &gt; (T)<span class="number">9</span>)&#123;</span><br><span class="line"><span class="built_in">write</span>(x / (T)<span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">putchar</span>(x % (T)<span class="number">10</span> + <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(c != <span class="string">&#x27;\0&#x27;</span>)&#123;</span><br><span class="line"><span class="built_in">putchar</span>(c);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> string <span class="title">strread</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">char</span> ch = <span class="built_in">getchar</span>();</span><br><span class="line">    string ret = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">while</span>(!(ch &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;z&#x27;</span> || ch &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span> || ch &gt;= <span class="string">&#x27;A&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;Z&#x27;</span>))&#123;</span><br><span class="line">        ch = <span class="built_in">getchar</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(ch &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;z&#x27;</span> || ch &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;9&#x27;</span> || ch &gt;= <span class="string">&#x27;A&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;Z&#x27;</span>)&#123;</span><br><span class="line">        ret += ch;</span><br><span class="line">        ch = <span class="built_in">getchar</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E6%B4%9B%E8%B0%B7%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%90%AC%E8%BF%90/">洛谷剪贴板搬运</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E5%89%AA%E8%B4%B4%E6%9D%BF/">剪贴板</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2025/02/09/%E5%BF%AB%E8%AF%BB%E5%BF%AB%E5%86%99/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>算法板子</title>
+      <link>https://imguojiahe.github.io/2025/02/09/%E7%AE%97%E6%B3%95%E6%9D%BF%E5%AD%90/</link>
+      <guid>https://imguojiahe.github.io/2025/02/09/%E7%AE%97%E6%B3%95%E6%9D%BF%E5%AD%90/</guid>
+      <pubDate>Sun, 09 Feb 2025 14:35:28 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;算法板子&quot;&gt;&lt;a href=&quot;#算法板子&quot; class=&quot;headerlink&quot; title=&quot;算法板子&quot;&gt;&lt;/a&gt;算法板子&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.luogu.com.cn/paste/dea5cl7s&quot;&gt;快读快写: </description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="算法板子"><a href="#算法板子" class="headerlink" title="算法板子"></a>算法板子</h1><ol><li><a href="https://www.luogu.com.cn/paste/dea5cl7s">快读快写: 用字符读入方法读入数字</a></li><li><a href="https://www.luogu.com.cn/paste/ggnghzi7">Kruskal算法框架</a></li><li><a href="https://www.luogu.com.cn/paste/dvzoo2co">LCA: 利用倍增法向上爬树寻找相同点</a></li><li><a href="https://www.luogu.com.cn/paste/pfu7qqm1">ST表: 分成有2^n长度组成的小部分，再用类似dp的方法推出其他小部分的最大最小值</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/bmo0jmb6.png">树上差分: 利用差分思想加减点权</a><br><img src="https://cdn.luogu.com.cn/upload/image_hosting/bmo0jmb6.png"></li><li><a href="https://www.luogu.com.cn/paste/6mzkielp">Floyd</a></li><li><a href="https://www.luogu.com.cn/paste/uz83o6u6">Dijkstra</a></li><li><a href="https://www.luogu.com.cn/paste/prgil5e8">线段树</a></li><li><a href="https://www.luogu.com.cn/paste/cnxlsb67">树状数组</a></li><li><a href="https://www.luogu.com.cn/paste/li1jzx1x">KMP &amp; KMP 字符串查找</a></li><li><a href="https://www.luogu.com.cn/paste/l5w5sdtr">拓展KMP</a></li><li><a href="https://www.luogu.com.cn/paste/qzahqnrq">manacher</a></li><li><a href="https://www.luogu.com.cn/paste/e7g2cjz3">树链剖分（树剖）</a></li><li><a href="https://www.luogu.com.cn/paste/z1ptxyu3">后缀数组（SA）: 利用倍增的思想求解字符串所有后缀按字典序排序后的顺序</a></li><li><a href="https://www.luogu.com.cn/paste/eqz4wvhc">AC 自动机: 将 KMP 的思想运用到 字典树 上，以在单个文本串中匹配多个模板串</a></li><li><a href="https://www.luogu.com.cn/paste/lors79an">压位高精度</a></li></ol>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E6%B4%9B%E8%B0%B7%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%90%AC%E8%BF%90/">洛谷剪贴板搬运</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E5%89%AA%E8%B4%B4%E6%9D%BF/">剪贴板</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2025/02/09/%E7%AE%97%E6%B3%95%E6%9D%BF%E5%AD%90/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>强力杀极域电子教室</title>
+      <link>https://imguojiahe.github.io/2025/02/09/%E5%BC%BA%E5%8A%9B%E6%9D%80%E6%9E%81%E5%9F%9F%E7%94%B5%E5%AD%90%E6%95%99%E5%AE%A4/</link>
+      <guid>https://imguojiahe.github.io/2025/02/09/%E5%BC%BA%E5%8A%9B%E6%9D%80%E6%9E%81%E5%9F%9F%E7%94%B5%E5%AD%90%E6%95%99%E5%AE%A4/</guid>
+      <pubDate>Sun, 09 Feb 2025 14:34:41 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;&lt;code&gt;taskkill /f /im StudentMain.exe&lt;/code&gt;&lt;/p&gt;
+</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p><code>taskkill /f /im StudentMain.exe</code></p>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E6%B4%9B%E8%B0%B7%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%90%AC%E8%BF%90/">洛谷剪贴板搬运</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E5%89%AA%E8%B4%B4%E6%9D%BF/">剪贴板</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2025/02/09/%E5%BC%BA%E5%8A%9B%E6%9D%80%E6%9E%81%E5%9F%9F%E7%94%B5%E5%AD%90%E6%95%99%E5%AE%A4/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>备忘录</title>
+      <link>https://imguojiahe.github.io/2025/02/09/%E5%A4%87%E5%BF%98%E5%BD%95/</link>
+      <guid>https://imguojiahe.github.io/2025/02/09/%E5%A4%87%E5%BF%98%E5%BD%95/</guid>
+      <pubDate>Sun, 09 Feb 2025 14:31:51 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;备忘录&quot;&gt;&lt;a href=&quot;#备忘录&quot; class=&quot;headerlink&quot; title=&quot;备忘录&quot;&gt;&lt;/a&gt;备忘录&lt;/h1&gt;&lt;p&gt;ex. &lt;a href=&quot;http://yuantiji.ac/zh/&quot;&gt;原题机&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ex. &lt;a href=&quot;h</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="备忘录"><a href="#备忘录" class="headerlink" title="备忘录"></a>备忘录</h1><p>ex. <a href="http://yuantiji.ac/zh/">原题机</a></p><p>ex. <a href="https://www.luogu.com.cn/paste/g1g5aa6o">强力杀极域电子教室</a></p><p>ex. <a href="https://www.luogu.com.cn/paste/8ygmwoy2">算法板子</a></p><p>ex. <a href="https://www.luogu.com.cn/paste/dea5cl7s">快读快写</a></p><p>ex. <a href="http://yuantiji.ac/zh/">原题查找站</a></p><p>ex. <a href="https://www.luogu.com.cn/paste/d0ar2y9p">原题查找1</a></p><ol><li><a href="https://www.luogu.com.cn/paste/lwcq1td6">2023&#x2F;2&#x2F;10学校比赛</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/vvrgfpwh.png">P7883框架</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/ai1od25q.png">T225800框架</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/yf4vbvx2.png">P5094框架</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/u9l64rnb.png">春测题解</a></li><li><a href="https://cdn.luogu.com.cn/upload/image_hosting/w9ealk20.png">2023&#x2F;3&#x2F;22单调队列参考</a></li><li><a href="https://csacademy.com/app/graph_editor/">生成图</a></li><li><a href="https://www.sharelikes.com.cn/">P社游戏资源</a></li><li><a href="https://game.chronodivide.com/">红警2网页版</a></li><li><a href="https://www.luogu.com.cn/paste/rv1fype4">2023&#x2F;12&#x2F;29题解</a></li></ol><p>ex. <a href="https://www.luogu.com.cn/paste/i0rd6wcb">工具箱</a></p>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E6%B4%9B%E8%B0%B7%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%90%AC%E8%BF%90/">洛谷剪贴板搬运</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E5%89%AA%E8%B4%B4%E6%9D%BF/">剪贴板</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2025/02/09/%E5%A4%87%E5%BF%98%E5%BD%95/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>最长公共串题解</title>
@@ -118,162 +281,6 @@
       
       
       <comments>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E7%BF%BB%E8%AF%91/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>USACO2023Jan银组总结</title>
-      <link>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E6%80%BB%E7%BB%93/</link>
-      <guid>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E6%80%BB%E7%BB%93/</guid>
-      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;上来第一眼习惯性的找中文翻译，然后&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://imgse.com/i/pS0hee0&quot;&gt;&lt;img src=&quot;https://s1.ax1x.com/2023/01/31/pS0hee0.jpg&quot; alt=&quot;pS0hee0.jpg&quot;&gt;&lt;/</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>上来第一眼习惯性的找中文翻译，然后</p><p><a href="https://imgse.com/i/pS0hee0"><img src="https://s1.ax1x.com/2023/01/31/pS0hee0.jpg" alt="pS0hee0.jpg"></a></p><p><strong>大哥！！！你中文翻译呢！！！</strong></p><p>在之后就开始了漫长的翻译的过程（自翻+机翻）<br>在漫长的40多分钟之后，一篇<del>毫无意义且浪费时间的</del>翻译就写完了。<br><a href="https://www.luogu.com.cn/blog/gjhdbk/usaco2023jan-yin-zu-fan-yi">翻译链接</a></p><p>现在看来如果在多几十分钟编程可能能AK？（并不确定）</p><p>每道题都看完之后，发现B好像有一点点<a href="https://www.luogu.com.cn/blog/gjhdbk/usaco2023jan-yin-zu-ti-xie">思路</a>，就先把 B 题切了。过程中忘记了  <em>翻转之后路标也会保持在这个方向，除非后来被翻转回来</em>  这一点调了10分钟。</p><p>然后是 C 题，在纸上划拉了几下之后盲猜了一种用 S 形的路来覆盖的方法，居然就给 AC 了！（纯侥幸）但每次都会莫名其妙的迷之输出一个多余的字符（最后我用存到字符串里后删掉最后一个多余的字符再输出）。</p><p>AC这两题之后就只剩下不到 $20min$ 的时间了，勉勉强强想出 A 题思路写完调完之后发现比赛就这么结束了(＃￣～￣＃)，也没交上去，现在还不知道对错。</p><p>所以说，如果少花几十分钟在翻译上的话可能能AK。</p>]]></content:encoded>
-      
-      
-      <category domain="https://imguojiahe.github.io/categories/%E5%8F%82%E8%B5%9B%E6%80%BB%E7%BB%93%EF%BC%8CUSACO%E9%A2%98%E7%9B%AE/">参赛总结，USACO题目</category>
-      
-      
-      <category domain="https://imguojiahe.github.io/tags/%E5%8F%82%E8%B5%9B%E6%80%BB%E7%BB%93/">参赛总结</category>
-      
-      
-      <comments>https://imguojiahe.github.io/2023/02/18/USACO2023Jan%E9%93%B6%E7%BB%84%E6%80%BB%E7%BB%93/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://imguojiahe.github.io/2023/02/18/test/</link>
-      <guid>https://imguojiahe.github.io/2023/02/18/test/</guid>
-      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
-      
-        
-        
-      <description>&lt;style&gt;@keyframes gradientBG{0%{background-position: 0% 50%;}50%{background-position: 100% 50%;}100% {background-position: 0% 50%;}}#rightsi</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<style>@keyframes gradientBG{0%{background-position: 0% 50%;}50%{background-position: 100% 50%;}100% {background-position: 0% 50%;}}#rightside{display:none;}</style><blockquote><p>这个页面是用来测试渐变背景的效果，以及不同透明度的效果。如果你有能力可以直接看 css 样式。否则请返回<a href="https://www.antmoe.com/posts/7198453/index.html#%E9%99%84%E5%BD%95">Hexo 博客之 butterfly 主题优化更换背景</a>复制代码。<br>阅读体验及个标签样式请自己进行调整。</p></blockquote><h2 id="透明度调节"><a href="#透明度调节" class="headerlink" title="透明度调节"></a>透明度调节</h2><center style='margin-bottom:20px' id = 'opt'><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="0">透明度0</a><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="0.1">透明度0.1</a><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="0.2">透明度0.2</a><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="0.3">透明度0.3</a><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="0.4">透明度0.4</a><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="0.5">透明度0.5</a><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="0.6">透明度0.6</a><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="0.7">透明度0.7</a><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="0.8">透明度0.8</a><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="0.9">透明度0.9</a><a style="color: #FFF;margin-bottom: 10px;"  style="color: #FFF;" href="#" class="button button-primary button-rounded button-small" data-opacity="1">透明度1</a></center><h2 id="背景调节"><a href="#背景调节" class="headerlink" title="背景调节"></a>背景调节</h2><div id='demo_style' style='text-align:center;margin:0 auto;'><h3 id="渐变类"><a href="#渐变类" class="headerlink" title="渐变类"></a>渐变类</h3><div data-type="photo" class='bg_test' style="display:inline-block;width: 200px;height:200px;background: url(&quot;https://ae01.alicdn.com/kf/H5662031fbf344418aa2c8bf74c68826eV.png&quot;),linear-gradient(45deg, #6dd0f2 15%, #f59abe 85%);text-align: center;line-height: 200px;margin-bottom:5px;cursor: pointer;">粉蓝色有图片</div><div data-type="photo" class='bg_test' style="display:inline-block;width: 200px;height:200px;background: linear-gradient(45deg, #6dd0f2 15%, #f59abe 85%);text-align: center;line-height: 200px;cursor: pointer;">粉蓝色无图片</div><div data-type="photo" class='bg_test' style="display:inline-block;width: 200px;height:200px;background: linear-gradient(102.7deg,#fddaff 8.2%,#dfadfc 19.6%,#adcdfc 36.8%,#adfcf4 73.2%,#caf8d0 90.9%);text-align: center;line-height: 200px;cursor: pointer;">美美哒渐变</div><div data-type="color" class='bg_test' style="display:inline-block;width: 200px;height:200px; background: linear-gradient(90deg,rgba(247,149,51,.1) 0,rgba(243,112,85,.1) 15%,rgba(239,78,123,.1) 30%,rgba(161,102,171,.1) 44%,rgba(80,115,184,.1) 58%,rgba(16,152,173,.1) 72%,rgba(7,179,155,.1) 86%,rgba(109,186,130,.1) 100%);text-align: center;line-height: 200px;cursor: pointer;">粉</div><div data-type="photo" class='bg_test' style="display:inline-block;width: 200px;height:200px; background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);    background-size: 400% 400%;animation: gradientBG 15s ease infinite;text-align: center;line-height: 200px;cursor: pointer;">动态渐变</div><div data-type="photo" class='bg_test' style="display:inline-block;width: 200px;height:200px; background: linear-gradient(to right bottom, rgb(0, 255, 240), rgb(92, 159, 247) 40%, rgb(211, 34, 255) 80%);text-align: center;line-height: 200px;cursor: pointer;">紫蓝色渐变</div><h3 id="渐变加图片类"><a href="#渐变加图片类" class="headerlink" title="渐变加图片类"></a>渐变加图片类</h3><div data-type="photo" class='bg_test' style="display:inline-block;width: 200px;height:200px; background: linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url(https://ae01.alicdn.com/kf/H18a4b998752a4ae68b8e85d432a5aef0l.png),url(https://ae01.alicdn.com/kf/H21b5f6b8496141a1979a33666e1074d9x.jpg)0% 0% / cover;text-align: center;line-height: 200px;cursor: pointer; background-size: cover;">紫蓝色渐变</div><h3 id="图片类"><a href="#图片类" class="headerlink" title="图片类"></a>图片类</h3><div data-type="photo" class='bg_test' style="display:inline-block;width: 200px;height:200px; background: url(https://api.abcyun.co/api/tool/bing/token/5d8f31cf6a8ab);text-align: center;line-height: 200px;cursor: pointer; background-size: cover;">必应壁纸</div><div data-type="photo" class='bg_test' style="display:inline-block;width: 200px;height:200px; background: url(https://api.abcyun.co/api/others/randacgimage/token/5d8f31cf6a8ab);text-align: center;line-height: 200px;cursor: pointer; background-size: cover;">随机二次元图</div><div data-type="photo" class='bg_test' style="display:inline-block;width: 200px;height:200px; background: url(https://api.abcyun.co/api/others/randacgblogbg/token/5d8f31cf6a8ab);text-align: center;line-height: 200px;cursor: pointer; background-size: cover;">随机二次元背景图</div></div><h2 id="测试文章"><a href="#测试文章" class="headerlink" title="测试文章"></a>测试文章</h2><h3 id="春"><a href="#春" class="headerlink" title="春"></a>春</h3><p>盼望着，盼望着，东风来了，春天的脚步近了。</p><p>一切都像刚睡醒的样子，欣欣然张开了眼。山朗润起来了，水长起来了，太阳的脸红起来了。</p><p>小草偷偷地从土里钻出来，嫩嫩的，绿绿的。园子里，田野里，瞧去，一大片一大片满是的。坐着，躺着，打两个滚，踢几脚球，赛几趟跑，捉几回迷藏。风轻悄悄的，草绵软软的。</p><p>桃树、杏树、梨树，你不让我，我不让你，都开满了花赶趟儿。红的像火，粉的像霞，白的像雪。花里带着甜味，闭了眼，树上仿佛已经满是桃儿、杏儿、梨儿。花下成千成百的蜜蜂嗡嗡地闹着，大小的蝴蝶飞来飞去。野花遍地是：杂样儿，有名字的，没名字的，散在花丛里，像眼睛，像星星，还眨呀眨的。</p><p>“吹面不寒杨柳风”，不错的，像母亲的手抚摸着你。风里带来些新翻的泥土的气息，混着青草味，还有各种花的香，都在微微润湿的空气里酝酿。鸟儿将窠巢安在繁花嫩叶当中，高兴起来了，呼朋引伴地卖弄清脆的喉咙，唱出宛转的曲子，与轻风流水应和着。牛背上牧童的短笛，这时候也成天在嘹亮地响。</p><p>雨是最寻常的，一下就是三两天。可别恼。看，像牛毛，像花针，像细丝，密密地斜织着，人家屋顶上全笼着一层薄烟。树叶子却绿得发亮，小草也青得逼你的眼。傍晚时候，上灯了，一点点黄晕的光，烘托出一片这安静而和平的夜。乡下去，小路上，石桥边，撑起伞慢慢走着的人;还有地里工作的农夫，披着蓑，戴着笠的。他们的草屋，稀稀疏疏的在雨里静默着。</p><p>天上风筝渐渐多了，地上孩子也多了。城里乡下，家家户户，老老小小，他们也赶趟儿似的，一个个都出来了。舒活舒活筋骨，抖擞抖擞精神，各做各的一份事去，“一年之计在于春”;刚起头儿，有的是工夫，有的是希望。</p><p>春天像刚落地的娃娃，从头到脚都是新的，它生长着。</p><p>春天像小姑娘，花枝招展的，笑着，走着。</p><p>春天像健壮的青年，有铁一般的胳膊和腰脚，他领着我们上前去。</p><ol><li>有序列表</li><li>有序</li><li>有</li></ol><ul><li>无需列表</li><li>测试</li></ul><div class="note default icon flat"><p>default</p></div><div class="note primary icon flat"><p>primary</p></div><div class="note success icon flat"><p>success</p></div><div class="note info icon flat"><p>info</p></div><div class="note warning icon flat"><p>warning</p></div><div class="note danger icon flat"><p>danger</p></div><div class="note primary no-icon flat"><h4 id="Primary-HeaderWelcome-to-Hexo"><a href="#Primary-HeaderWelcome-to-Hexo" class="headerlink" title="Primary HeaderWelcome to Hexo!"></a>Primary Header<strong>Welcome</strong> to <a href="https://hexo.io/">Hexo!</a></h4></div><script>var article_container=document.getElementById("demo_style"),opt=document.getElementById("opt");article_container.addEventListener("click",function(e){var t=e.target;"DIV"===t.nodeName&&"bg_test"===t.className&&(web_bg.style.background=t.style.background,web_bg.style.animation=t.style.animation),Cookies.set("bg",t.style.background,{expires:1}),Cookies.set("animation",t.style.animation,{expires:1}),Cookies.set("type",t.getAttribute("data-type"),{expires:1})}),opt.addEventListener("click",function(e){var t=e.target;if("A"===t.nodeName){var a=t.getAttribute("data-opacity");if(a){Cookies.set("opacity",a,{expires:1});var n="--light_bg_color: rgb(255, 255, 255,"+a+");",i="--dark_bg_color: rgba(18,18,18,"+a+");";document.getElementById("content-inner").setAttribute("style",n+i)}}e.preventDefault()});</script>]]></content:encoded>
-      
-      
-      
-      
-      <comments>https://imguojiahe.github.io/2023/02/18/test/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>P8550 冬之花 题解</title>
-      <link>https://imguojiahe.github.io/2023/02/18/P8550_%E5%86%AC%E4%B9%8B%E8%8A%B1_%E9%A2%98%E8%A7%A3/</link>
-      <guid>https://imguojiahe.github.io/2023/02/18/P8550_%E5%86%AC%E4%B9%8B%E8%8A%B1_%E9%A2%98%E8%A7%A3/</guid>
-      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;对一个数 $x$，进行 $10^{100}$ 次操作，每次操作为：把这个数加上 $a_i(1 \le i \le n)$ 。</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>对一个数 $x$，进行 $10^{100}$ 次操作，每次操作为：把这个数加上 $a_i(1 \le i \le n)$ 。</p><p>问能不能在这 $10^{100}$ 中，不出现为 $0$ 的数？</p><h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>如果 $x$ 为正数，有两种情况满足题目条件：</p><ol><li>$a$ 数组中有正数（一直累加这一个数，$x$ 逐渐变大，不可能变成0）；</li><li>$a$ 数组中有负数且 $n$ 不能被 $\left| a_i \right|$ 整除（会变成负数但不会出现 $0$ ）。</li></ol><p>同样，如果 $x$ 为负数，也有两种情况满足题目条件：</p><ol><li>$a$ 数组中有负数；（一直累加这一个数，$x$ 逐渐变小，不可能变成0）；</li><li>$a$ 数组中有正数数且 $\left| n \right|$ 不能被 $a_i$ 整除（会变成正数但不会出现 $0$ ）。</li></ol><p>所以，我们可以遍历题目给出的每一个数，判断它是否满足条件，只要有一个数满足上面的条件，答案便为可行，若没有一个数满足，则答案为不可行。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> NR = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> a[NR + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> T;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;                              <span class="comment">//多组数据</span></span><br><span class="line">        <span class="type">int</span> n, x;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;x);                  <span class="comment">//读入</span></span><br><span class="line">        <span class="type">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">            <span class="keyword">if</span>(a[i] &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(x &gt; <span class="number">0</span>)&#123;                  <span class="comment">//正数中的1.</span></span><br><span class="line">                    flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(<span class="built_in">abs</span>(x) % a[i]) flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;                        <span class="comment">//负数中的2.</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(a[i] &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(x &lt; <span class="number">0</span>)&#123;                  <span class="comment">//负数中的1.</span></span><br><span class="line">                    flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(x % <span class="built_in">abs</span>(a[i])) flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;                        <span class="comment">//正数中的2.</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(flag ? <span class="string">&quot;Yes\n&quot;</span> : <span class="string">&quot;No\n&quot;</span>);          <span class="comment">//输出</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%EF%BC%8C%E6%B4%9B%E8%B0%B7%E9%A2%98%E7%9B%AE/">编程题解，洛谷题目</category>
-      
-      
-      <category domain="https://imguojiahe.github.io/tags/%E9%A2%98%E8%A7%A3/">题解</category>
-      
-      
-      <comments>https://imguojiahe.github.io/2023/02/18/P8550_%E5%86%AC%E4%B9%8B%E8%8A%B1_%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>P8537 花如幻想一般 题解</title>
-      <link>https://imguojiahe.github.io/2023/02/18/P8537_%E8%8A%B1%E5%A6%82%E5%B9%BB%E6%83%B3%E4%B8%80%E8%88%AC_%E9%A2%98%E8%A7%A3/</link>
-      <guid>https://imguojiahe.github.io/2023/02/18/P8537_%E8%8A%B1%E5%A6%82%E5%B9%BB%E6%83%B3%E4%B8%80%E8%88%AC_%E9%A2%98%E8%A7%A3/</guid>
-      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;有一个长度为 $n$ 的序列 $a$。可以进行两种操作：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;将整个序列翻转；&lt;/li&gt;
-&lt;li&gt;将序</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有一个长度为 $n$ 的序列 $a$。可以进行两种操作：</p><ol><li>将整个序列翻转；</li><li>将序列中的某个数加上某个整数。</li></ol><p>问：至少要用多少次操作可以将序列 $a$ 转化为序列 $b$。</p><h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>只要稍微思考一下，就可以得到一个结论：假设反转的次数为 $x$ </p><p>则 $0 \leq x \leq 1$ 所以，我们可以分别枚举两种情况，</p><p>第一种为不翻转，第二种为翻转。</p><p>然后分别得出两种序列后，遍历得出不翻转和翻转之后的数组与 $b$ 相对应的数不相同的数的个数后，取最小值就是答案。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> NR = <span class="number">5</span> * <span class="number">1e5</span>;</span><br><span class="line"><span class="type">int</span> a[NR + <span class="number">10</span>], b[NR + <span class="number">10</span>], c[NR + <span class="number">10</span>];</span><br><span class="line"><span class="comment">//  没有翻转   目标      翻转</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);<span class="comment">//输入</span></span><br><span class="line">        c[n - i + <span class="number">1</span>] = a[i];<span class="comment">//翻转</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;b[i]);<span class="comment">//输入</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> cnt1 = <span class="number">0</span>, cnt2 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;<span class="comment">//计算</span></span><br><span class="line">        cnt1 += a[i] != b[i];</span><br><span class="line">        cnt2 += c[i] != b[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="built_in">min</span>(cnt1, cnt2));<span class="comment">//输出</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3%EF%BC%8C%E6%B4%9B%E8%B0%B7%E9%A2%98%E7%9B%AE/">编程题解，洛谷题目</category>
-      
-      
-      <category domain="https://imguojiahe.github.io/tags/%E9%A2%98%E8%A7%A3/">题解</category>
-      
-      
-      <comments>https://imguojiahe.github.io/2023/02/18/P8537_%E8%8A%B1%E5%A6%82%E5%B9%BB%E6%83%B3%E4%B8%80%E8%88%AC_%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>P1156 垃圾陷阱 题解</title>
-      <link>https://imguojiahe.github.io/2023/02/18/P1156_%E5%9E%83%E5%9C%BE%E9%99%B7%E9%98%B1_%E9%A2%98%E8%A7%A3/</link>
-      <guid>https://imguojiahe.github.io/2023/02/18/P1156_%E5%9E%83%E5%9C%BE%E9%99%B7%E9%98%B1_%E9%A2%98%E8%A7%A3/</guid>
-      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;题意简述&quot;&gt;&lt;a href=&quot;#题意简述&quot; class=&quot;headerlink&quot; title=&quot;题意简述&quot;&gt;&lt;/a&gt;题意简述&lt;/h2&gt;&lt;p&gt;在一个深度为 $D$ 的坑内，有很多垃圾，一只牛在其中。每个垃圾可以用来吃和堆放（堆放垃圾&lt;strong&gt;不用花费&lt;/str</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="题意简述"><a href="#题意简述" class="headerlink" title="题意简述"></a>题意简述</h2><p>在一个深度为 $D$ 的坑内，有很多垃圾，一只牛在其中。每个垃圾可以用来吃和堆放（堆放垃圾<strong>不用花费</strong>时间）。 </p><p>已知每个垃圾进入坑内的时间 $t$ 、高度 $h$ 和能量值 $f$ ，如果当前有 $x$ 的能量值，就能继续存活 $x$ 小时。</p><p>问这只牛能否从坑里出来，如果能，输出能出来的最早时间，否则输出最长存活时间</p><h2 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h2><p>第一眼看到题目想到了贪心，仔细阅读后发现和01背包更像一些，这里我用的是01背包的一个变形。</p><h2 id="思路部分"><a href="#思路部分" class="headerlink" title="思路部分"></a>思路部分</h2><p>我使用 $dp_j$ 表示高度为 $j$ 时的最大能量。题目中假设卡门当前体内有足够持续 $10$ 小时的能量，说以数组的初值就是 <code>dp[0] = 10</code> ， 题目中垃圾的顺序可能不按照到达时间来排列，所以读入完之后要按到达时间先后顺序。</p><p>然后就是01背包的变形，按顺序遍历每个垃圾，枚举所有的可能高度，分别把数组中这个垃圾用来吃和用来垫脚的状态分别更新，如果当前高度再垫上这个垃圾就可以出去的话就输出当前的时间。但这一切的前提条件是卡门没有饿死，所以还要判断卡门没有饿死才能执行。</p><p>如果循环结束卡门还没有出去，就说明他出不去，那维持生命的最长时间就是把垃圾全吃了的维持时间。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> NR = <span class="number">1e2</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MR = <span class="number">1e2</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span>&#123; <span class="comment">//垃圾</span></span><br><span class="line"><span class="type">int</span> t, f, h;</span><br><span class="line">&#125;a[NR + <span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> dp[MR + <span class="number">10</span>]; <span class="comment">//dp[j]表示高度为 j 时的最大能量</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(Node x, Node y)</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> x.t &lt; y.t;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="comment">//读入</span></span><br><span class="line"><span class="type">int</span> d, n;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;d, &amp;n);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;a[i].t, &amp;a[i].f, &amp;a[i].h);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n, cmp); <span class="comment">//按照时间先后排序</span></span><br><span class="line"><span class="built_in">memset</span>(dp, ~<span class="number">0x3f3f3f3f</span>, <span class="built_in">sizeof</span>(dp)); <span class="comment">//初始化</span></span><br><span class="line">dp[<span class="number">0</span>] = <span class="number">10</span>; <span class="comment">//初值</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123; <span class="comment">//背包</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j = d;j &gt;= <span class="number">0</span>;j--)&#123;</span><br><span class="line"><span class="keyword">if</span>(dp[j] &gt;= a[i].t)&#123; <span class="comment">//还没饿死</span></span><br><span class="line"><span class="keyword">if</span>(j + a[i].h &gt;= d)&#123; <span class="comment">//出去了</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, a[i].t);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">dp[j + a[i].h] = <span class="built_in">max</span>(dp[j + a[i].h], dp[j]); <span class="comment">//这个垃圾用来垫脚了</span></span><br><span class="line">dp[j] += a[i].f; <span class="comment">//吃垃圾</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, dp[<span class="number">0</span>]); <span class="comment">//出不去, 全吃了</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3/">编程题解</category>
-      
-      <category domain="https://imguojiahe.github.io/categories/%E7%BC%96%E7%A8%8B%E9%A2%98%E8%A7%A3/%E6%B4%9B%E8%B0%B7%E9%A2%98%E7%9B%AE/">洛谷题目</category>
-      
-      
-      <category domain="https://imguojiahe.github.io/tags/%E9%A2%98%E8%A7%A3/">题解</category>
-      
-      
-      <comments>https://imguojiahe.github.io/2023/02/18/P1156_%E5%9E%83%E5%9C%BE%E9%99%B7%E9%98%B1_%E9%A2%98%E8%A7%A3/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://imguojiahe.github.io/2023/02/18/hello-world/</link>
-      <guid>https://imguojiahe.github.io/2023/02/18/hello-world/</guid>
-      <pubDate>Sat, 18 Feb 2023 10:36:04 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;这是本蒟蒻辛辛苦苦建出来的博客，希望在上面发一些关于编程和计算机的东西。&lt;/p&gt;
-&lt;p&gt;这里写上我搭建这个博客按照的&lt;a href=&quot;https://zhuanlan.zhihu.com/p/102592286&quot;&gt;教程&lt;/a&gt;如果有需要的话大家可以看看~&lt;/p&gt;
-</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>这是本蒟蒻辛辛苦苦建出来的博客，希望在上面发一些关于编程和计算机的东西。</p><p>这里写上我搭建这个博客按照的<a href="https://zhuanlan.zhihu.com/p/102592286">教程</a>如果有需要的话大家可以看看~</p>]]></content:encoded>
-      
-      
-      
-      
-      <comments>https://imguojiahe.github.io/2023/02/18/hello-world/#disqus_thread</comments>
       
     </item>
     
