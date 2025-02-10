@@ -3,12 +3,12 @@
   xmlns:atom="http://www.w3.org/2005/Atom"
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Kevin Guo 的博客</title>
+    <title>AceMetric 的博客</title>
     <link>https://imguojiahe.github.io/</link>
     
     <atom:link href="https://imguojiahe.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
-    <description>人啊，认识你自己</description>
+    <description>Face the fear, Build the future</description>
     <pubDate>Mon, 10 Feb 2025 13:46:37 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
