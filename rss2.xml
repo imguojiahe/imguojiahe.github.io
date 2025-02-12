@@ -9,8 +9,36 @@
     <atom:link href="https://imguojiahe.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Face the fear, Build the future</description>
-    <pubDate>Mon, 10 Feb 2025 14:16:22 GMT</pubDate>
+    <pubDate>Wed, 12 Feb 2025 08:31:23 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>欧拉筛 &amp; 求欧拉函数</title>
+      <link>https://imguojiahe.github.io/2025/02/12/%E6%AC%A7%E6%8B%89%E7%AD%9B%20&amp;%20%E6%B1%82%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</link>
+      <guid>https://imguojiahe.github.io/2025/02/12/%E6%AC%A7%E6%8B%89%E7%AD%9B%20&amp;%20%E6%B1%82%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</guid>
+      <pubDate>Wed, 12 Feb 2025 08:29:36 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;欧拉筛-amp-求欧拉函数&quot;&gt;&lt;a href=&quot;#欧拉筛-amp-求欧拉函数&quot; class=&quot;headerlink&quot; title=&quot;欧拉筛 &amp;amp; 求欧拉函数&quot;&gt;&lt;/a&gt;欧拉筛 &amp;amp; 求欧拉函数&lt;/h1&gt;&lt;figure class=&quot;highlight </description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="欧拉筛-amp-求欧拉函数"><a href="#欧拉筛-amp-求欧拉函数" class="headerlink" title="欧拉筛 &amp; 求欧拉函数"></a>欧拉筛 &amp; 求欧拉函数</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> NR = <span class="number">1e5</span>;</span><br><span class="line"><span class="type">bool</span> is_prime[NR + <span class="number">10</span>];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; pri;</span><br><span class="line"><span class="type">int</span> phi[NR + <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">EulerSeive</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(is_prime, <span class="literal">true</span>, <span class="built_in">sizeof</span>(is_prime));</span><br><span class="line">    is_prime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">    phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>;i &lt;= x;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(is_prime[i])&#123;</span><br><span class="line">            pri.<span class="built_in">emplace_back</span>(i);</span><br><span class="line">            phi[i] = i - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> j : pri)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i * j &gt; x) <span class="keyword">continue</span>;</span><br><span class="line">            is_prime[i * j] = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span>(i % j == <span class="number">0</span>)&#123;</span><br><span class="line">                phi[i * j] = phi[i] * j;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            phi[i * j] = phi[i] * phi[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content:encoded>
+      
+      
+      <category domain="https://imguojiahe.github.io/categories/%E6%B4%9B%E8%B0%B7%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%90%AC%E8%BF%90/">洛谷剪贴板搬运</category>
+      
+      <category domain="https://imguojiahe.github.io/categories/%E6%B4%9B%E8%B0%B7%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%90%AC%E8%BF%90/%E7%AE%97%E6%B3%95%E6%9D%BF%E5%AD%90/">算法板子</category>
+      
+      
+      <category domain="https://imguojiahe.github.io/tags/%E7%AE%97%E6%B3%95%E6%9D%BF%E5%AD%90/">算法板子</category>
+      
+      
+      <comments>https://imguojiahe.github.io/2025/02/12/%E6%AC%A7%E6%8B%89%E7%AD%9B%20&amp;%20%E6%B1%82%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>压位高精度</title>
@@ -265,34 +293,6 @@
       
       
       <comments>https://imguojiahe.github.io/2025/02/10/%E7%BA%BF%E6%AE%B5%E6%A0%91/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Dijkstra</title>
-      <link>https://imguojiahe.github.io/2025/02/10/Dijkstra/</link>
-      <guid>https://imguojiahe.github.io/2025/02/10/Dijkstra/</guid>
-      <pubDate>Mon, 10 Feb 2025 13:41:13 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h1 id=&quot;Dijkstra最短路&quot;&gt;&lt;a href=&quot;#Dijkstra最短路&quot; class=&quot;headerlink&quot; title=&quot;Dijkstra最短路&quot;&gt;&lt;/a&gt;Dijkstra最短路&lt;/h1&gt;&lt;p&gt;将结点分成两个集合：已确定最短路长度的点集（记为 &lt;code&gt;S&lt;/</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="Dijkstra最短路"><a href="#Dijkstra最短路" class="headerlink" title="Dijkstra最短路"></a>Dijkstra最短路</h1><p>将结点分成两个集合：已确定最短路长度的点集（记为 <code>S</code> 集合）的和未确定最短路长度的点集（记为 <code>T</code> 集合）。一开始所有的点都属于 <code>T</code> 集合。</p><p>初始化 $dis(s)&#x3D;0$，其他点的 dis 均为 $+\infty$。</p><p>然后重复这些操作：</p><p>从 <code>T</code> 集合中，选取一个最短路长度最小的结点，移到 S 集合中。<br>对那些刚刚被加入 <code>S</code> 集合的结点的所有出边执行松弛操作。<br>直到 <code>T</code> 集合为空，算法结束。</p>]]></content:encoded>
-      
-      
-      <category domain="https://imguojiahe.github.io/categories/%E6%B4%9B%E8%B0%B7%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%90%AC%E8%BF%90/">洛谷剪贴板搬运</category>
-      
-      <category domain="https://imguojiahe.github.io/categories/%E6%B4%9B%E8%B0%B7%E5%89%AA%E8%B4%B4%E6%9D%BF%E6%90%AC%E8%BF%90/%E7%AE%97%E6%B3%95%E6%9D%BF%E5%AD%90/">算法板子</category>
-      
-      
-      <category domain="https://imguojiahe.github.io/tags/%E7%AE%97%E6%B3%95%E6%9D%BF%E5%AD%90/">算法板子</category>
-      
-      
-      <comments>https://imguojiahe.github.io/2025/02/10/Dijkstra/#disqus_thread</comments>
       
     </item>
     

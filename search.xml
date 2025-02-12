@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>欧拉筛 &amp; 求欧拉函数</title>
+      <link href="/2025/02/12/%E6%AC%A7%E6%8B%89%E7%AD%9B%20&amp;%20%E6%B1%82%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/"/>
+      <url>/2025/02/12/%E6%AC%A7%E6%8B%89%E7%AD%9B%20&amp;%20%E6%B1%82%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="欧拉筛-amp-求欧拉函数"><a href="#欧拉筛-amp-求欧拉函数" class="headerlink" title="欧拉筛 &amp; 求欧拉函数"></a>欧拉筛 &amp; 求欧拉函数</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> NR = <span class="number">1e5</span>;</span><br><span class="line"><span class="type">bool</span> is_prime[NR + <span class="number">10</span>];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; pri;</span><br><span class="line"><span class="type">int</span> phi[NR + <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">EulerSeive</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(is_prime, <span class="literal">true</span>, <span class="built_in">sizeof</span>(is_prime));</span><br><span class="line">    is_prime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">    phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>;i &lt;= x;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(is_prime[i])&#123;</span><br><span class="line">            pri.<span class="built_in">emplace_back</span>(i);</span><br><span class="line">            phi[i] = i - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> j : pri)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i * j &gt; x) <span class="keyword">continue</span>;</span><br><span class="line">            is_prime[i * j] = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span>(i % j == <span class="number">0</span>)&#123;</span><br><span class="line">                phi[i * j] = phi[i] * j;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            phi[i * j] = phi[i] * phi[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 洛谷剪贴板搬运 </category>
+          
+          <category> 算法板子 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法板子 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>压位高精度</title>
       <link href="/2025/02/10/%E5%8E%8B%E4%BD%8D%E9%AB%98%E7%B2%BE%E5%BA%A6/"/>
       <url>/2025/02/10/%E5%8E%8B%E4%BD%8D%E9%AB%98%E7%B2%BE%E5%BA%A6/</url>
