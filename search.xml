@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>exCRT</title>
+      <link href="/2025/02/13/exCRT/"/>
+      <url>/2025/02/13/exCRT/</url>
+      
+        <content type="html"><![CDATA[<h1 id="exCRT"><a href="#exCRT" class="headerlink" title="exCRT"></a>exCRT</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function">pair&lt;T, T&gt; <span class="title">exgcd</span><span class="params">(T a, T b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b) <span class="keyword">return</span> <span class="built_in">make_pair</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    pair&lt;T, T&gt; ret = <span class="built_in">exgcd</span>(b, a % b);</span><br><span class="line">    T tmp = ret.first;</span><br><span class="line">    ret.first = ret.second;</span><br><span class="line">    ret.second = tmp - (a / b) * ret.second;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function">T <span class="title">excrt</span><span class="params">(vector&lt;pair&lt;T, T&gt; &gt; &amp;conv)</span></span>&#123;</span><br><span class="line">    <span class="comment">// x = conv[].second (mod conv[].first)</span></span><br><span class="line">    <span class="keyword">if</span>(conv.<span class="built_in">empty</span>()) <span class="keyword">return</span> (T)<span class="number">-1</span>;</span><br><span class="line">    T m0 = conv.<span class="built_in">front</span>().first, a0 = conv.<span class="built_in">front</span>().second;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i &lt; conv.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        T m = conv[i].first, a = conv[i].second;</span><br><span class="line">        PI1 u = <span class="built_in">exgcd</span>(m0, m);</span><br><span class="line">        T d = __gcd(m0, m);</span><br><span class="line">        <span class="keyword">if</span>((a - a0) % d) <span class="keyword">return</span> (T)<span class="number">-1</span>;</span><br><span class="line">        T m3 = m0 / d * m;</span><br><span class="line">        a0 = ((a * (m0 / d) % m3) * u.first % m3 + (a0 * (m / d) % m3) * u.second % m3 + m3) % m3;</span><br><span class="line">        m0 = m3;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 洛谷剪贴板搬运 </category>
+          
+          <category> 算法板子 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法板子 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>欧拉筛 &amp; 求欧拉函数</title>
       <link href="/2025/02/12/%E6%AC%A7%E6%8B%89%E7%AD%9B%20&amp;%20%E6%B1%82%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/"/>
       <url>/2025/02/12/%E6%AC%A7%E6%8B%89%E7%AD%9B%20&amp;%20%E6%B1%82%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/</url>
